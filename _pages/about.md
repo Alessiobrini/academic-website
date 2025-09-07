@@ -6,7 +6,7 @@ subtitle: Executive in Residence at Pratt School of Engineering, Duke University
 
 profile:
   align: right
-  image: "/assets/img/profile.jpg"
+  image: "profile.jpg"
   image_circular: false # crops the image to make it circular
   address: >
     <p>Hudson Hall 209B</p>
@@ -18,8 +18,6 @@ latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
-
-<img src="/assets/img/profile.jpg?v=2" alt="Alessio Brini" style="float:right;max-width:180px;height:auto;border-radius:12px;">
 
 
 I am a faculty member at Duke University’s Pratt School of Engineering, where I work with the Digital Asset Research & Engineering Collaborative (DAREC). My research and teaching focus on financial challenges in digital assets and decentralized finance (DeFi), with a strong emphasis on applied machine learning and data science. I work across the full spectrum of machine learning — supervised, unsupervised, and reinforcement learning — to develop models that advance our understanding of complex financial systems.
