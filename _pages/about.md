@@ -27,9 +27,3 @@ I earned my Ph.D. in Mathematical Finance from Scuola Normale Superiore, where I
 At Duke, I teach courses including Machine Learning for FinTech, Data Wrangling and Visualization with Python, and Introduction to Statistics in the Master of Engineering in Financial Technology program. I also mentor students on FinTech capstone projects and guide summer research initiatives.
 
 My research has been presented at conferences and circulated as working papers, covering topics such as cryptocurrency market stability and reinforcement learning for financial trading. Beyond teaching and research, I serve as a reviewer for academic journals, contribute to conference organizations, and advise graduate students.
-
-news: true
-latest_posts: true
-selected_papers: true
-social: true
----
