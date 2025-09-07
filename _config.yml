@@ -20,9 +20,14 @@ lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: /assets/img/network-wired-solid-full.svg  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: "https://www.alessiobrini.com"
-baseurl: blank   # if repo is named academic-website
+baseurl: ""   # if repo is named academic-website
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path:  # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
+
+
+author:
+  name: "Alessio Brini"
+  avatar: /assets/img/profile.jpg
 
 # -----------------------------------------------------------------------------
 # Theme
@@ -170,6 +175,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - _posts/2021-07-04-diagrams.md
 keep_files:
   - CNAME
   - .nojekyll
@@ -358,5 +364,3 @@ medium_zoom:
   integrity: "sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8="
 
 
-exclude:
-  - _posts/2021-07-04-diagrams.md
