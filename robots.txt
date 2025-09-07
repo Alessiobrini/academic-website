@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.alessiobrini.comblank/sitemap.xml
+Sitemap: https://www.alessiobrini.com/sitemap.xml
