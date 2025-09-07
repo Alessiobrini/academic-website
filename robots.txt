@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://alessiobrini.github.io/academic-website/sitemap.xml
+Sitemap: https://www.alessiobrini.comblank/sitemap.xml
