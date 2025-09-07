@@ -6,11 +6,11 @@ subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
 
 profile:
   align: right
-  image: /assets/img/profile.jpg
+  image: "/assets/img/profile.jpg"
   image_circular: false # crops the image to make it circular
   address: >
     <p>Hudson Hall 209B</p>
-    <p>110 Science Drive, Box 90271</p>
+    <p>110 Science Drive</p>
     <p>Durham, NC 27708</p>
 
 news: true  # includes a list of news items
