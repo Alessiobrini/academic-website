@@ -2,96 +2,117 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+      value: Alessio Brini
+    - name: Email
+      value: alessiobrini@gmail.com / alessio.brini@duke.edu
+    - name: Phone
+      value: +1 (919) 904-5994
+    - name: Links
+      value: 
+        <a href="https://www.linkedin.com/in/alessiobrini/">LinkedIn</a>, 
+        <a href="https://github.com/Alessiobrini">GitHub</a>, 
+        <a href="https://scholar.google.com/citations?user=NHmzS7YAAAAJ&hl=it">Google Scholar</a>, 
+        <a href="https://orcid.org/0000-0003-1121-818X">ORCID</a>
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Ph.D. in Mathematical Finance
+      institution: Scuola Normale Superiore, Pisa, Italy
+      year: 2018–2022
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - Thesis: <a href="https://tesidottorato.depositolegale.it/handle/20.500.14242/167041"><em>Reinforcement learning for sequential decision-making: a data-driven approach for finance</em></a>
+    - title: M.Sc. in Quantitative Finance and Risk Management
+      institution: Università degli Studi di Firenze, Florence, Italy
+      year: 2016–2018
       description:
-        - Description 1.
-        - Description 2.
+        - Thesis: “Beyond the parameters’ estimation burden: a Bayesian framework for option pricing.”
+    - title: B.Sc. in Business and Economics
+      institution: Università degli Studi di Firenze, Florence, Italy
+      year: 2012–2015
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Executive in Residence
+      institution: Duke University, Pratt School of Engineering — <a href="https://darec.duke.edu/">DAREC</a>
+      year: 2024–present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Faculty in FinTech, applying machine learning and data science to decentralized finance and digital assets
+        - Teaching, research, and student mentoring
+    - title: Postdoctoral Researcher
+      institution: Duke University, Pratt School of Engineering — DAREC
+      year: 2022–2024
       description:
-        - Description 1.
-        - Description 2.
-
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+        - Applied supervised, unsupervised, and reinforcement learning to financial challenges in DeFi
+        - Taught graduate courses in FinTech
+        - Directed capstone and summer research projects
+    - title: Actuarial Analyst
+      institution: Milliman, Florence (Remote)
+      year: 2018
       description:
+        - Built spreadsheets, databases, and reports for financial/insurance projects
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
-
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
-      items: 
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
+- title: Teaching
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - FINTECH 540: Machine Learning for FinTech — Duke University
+    - FINTECH/ECE 590: Data Wrangling and Visualization with Python — Duke University
+    - FINTECH 502: FinTech Capstones — Duke University
+    - FINTECH 520: Introduction to Statistics — Duke University
+    - Python for Data Science — University of Florence (2020)
+
+- title: Publications
+  type: list
+  contents:
+    - “Deep Reinforcement Trading with Predictable Returns,” <em>Physica A</em>
+    - “Reinforcement Learning Policy Recommendation for Interbank Network Stability,” <em>Journal of Financial Stability</em>
+    - “Assessing the resiliency of investors against cryptocurrency market crashes through the leverage effect,” <em>Economics Letters</em>
+    - “A Comparison-Based Study of Cryptocurrency Volatility,” <em>Financial Innovation</em>
+    - “Tree-Based Cryptocurrency Option Pricing,” <em>Economic Modelling</em>
+    - “SpotV2Net: Multivariate Intraday Spot Volatility Forecasting,” <em>International Journal of Forecasting</em>
+    - “Data-driven Derivative Hedging with Quadratic Variation Penalty,” <em>ICAIF’24 Proceedings</em>
+    - “Modeling and Simulating a Startup Ecosystem Development,” <em>Soft Computing</em>
+
+- title: Working Papers
+  type: list
+  contents:
+    - “A Machine Learning Approach to Forecasting Honey Production with Tree-Based Methods” (submitted to Applied Soft Computing)
+    - “On Deep Reinforcement Learning for Dynamic Trading with PPO: Challenges and Future Directions” (submitted to Journal of Financial Data Science)
+    - “Honey-at-Risk: Quantifying honey production risk in Italy” (SSRN 4562432)
+    - “Empirical Evaluation of Machine Learning Models for Option Pricing” (arXiv:2506.17511)
+    - “Improving DeFi Accessibility through Efficient Liquidity Provisioning with Deep Reinforcement Learning” (arXiv:2501.07508)
+
+- title: Grants
+  type: list
+  contents:
+    - Co-Investigator, “Risk Management in Times of Unprecedented Geo-Political Volatility,” Institut Europlace de Finance, Institute Louis Bachelier (€10k)
+    - Collaborator, “BEEkeepers Weather Indexed INsurance” project, University of Florence (Italian Ministry of Agricultural, €600k)
+
+- title: Conferences
+  type: list
+  contents:
+    - AAAI Conference (AI for Social Impact), 2025 — Contributed Talk, Best Paper Award
+    - ICAIF’24, 2024 — Poster Presentation
+    - NBER-NSF Time Series Conference, 2024 — Poster Presentation
+    - Pisa Workshop on ML of Dynamic Processes, 2020 — Contributed Talk
+    - European Financial Mathematics Summer School, 2020 — Contributed Talk
+    - Eastern European ML Summer School, 2020 — Poster Presentation
+
+- title: Professional Activities
+  type: list
+  contents:
+    - Admissions and recruitment support for Duke FinTech MEng program
+    - Organizer, Digital Assets at Duke (DA@D), 2023–2024
+    - Referee: Annals of Operations Research, Expert Systems with Applications, Financial Innovation, Finance Research Letters, Scientific Reports, Applied Economics, Journal of Applied Economics, and others
+    - Scientific Committee, Florence-Paris Workshop on Financial Econometrics, 2023
+
+
+- title: Academic Interests
+  type: list
+  contents:
+    - Machine Learning applications in Finance and Economics
+    - Decentralized Finance (DeFi) and Digital Assets
+    - Reinforcement Learning for Trading, Liquidity Provision, and Market Design
+    - Forecasting and Risk Management (time series, volatility, honey-at-risk)
+    - Graph Neural Networks and Network Models for Financial Systems
