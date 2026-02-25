@@ -1,6 +1,31 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
+"Journal of Financial Stability":
+  url: https://www.sciencedirect.com/journal/journal-of-financial-stability
+  color: "#1a5276"
 
-"PhysRev":
-  url: https://journals.aps.org/
+"Economics Letters":
+  url: https://www.sciencedirect.com/journal/economics-letters
+  color: "#1a5276"
+
+"Financial Innovation":
+  url: https://jfin-swufe.springeropen.com/
+  color: "#117a65"
+
+"Economic Modelling":
+  url: https://www.sciencedirect.com/journal/economic-modelling
+  color: "#1a5276"
+
+"Physica A: Statistical Mechanics and its Applications":
+  url: https://www.sciencedirect.com/journal/physica-a-statistical-mechanics-and-its-applications
+  color: "#1a5276"
+
+"International Journal of Forecasting":
+  url: https://www.sciencedirect.com/journal/international-journal-of-forecasting
+  color: "#1a5276"
+
+"Soft Computing":
+  url: https://link.springer.com/journal/500
+  color: "#117a65"
+
+"ICAIF":
+  url: https://dl.acm.org/conference/icaif
+  color: "#7d3c98"

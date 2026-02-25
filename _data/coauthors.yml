@@ -1,34 +1,69 @@
-"Adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"Lenz":
+  - firstname: ["Jimmie", "J."]
 
-"Podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+"Rasiel":
+  - firstname: ["Emma", "E."]
 
-"Rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+"Tedeschi":
+  - firstname: ["Gabriele", "G."]
 
-"Bach": 
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+"Tantari":
+  - firstname: ["Daniele", "D."]
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+"Giovannini":
+  - firstname: ["Elisa", "E."]
 
-"Przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
+"Smaniotto":
+  - firstname: ["Elia", "E."]
 
-"Schrödinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+"Lombardi":
+  - firstname: ["Ginevra Virginia", "G. V.", "G.V."]
 
-"Lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
+"Mancino":
+  - firstname: ["Maria Elvira", "M. E.", "M.E."]
 
-"Planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
+"Toscano":
+  - firstname: ["Giacomo", "G."]
+
+"Hsieh":
+  - firstname: ["David A", "David", "D. A.", "D."]
+    url: https://econ.duke.edu/faculty/david-a-hsieh
+
+"Kuiper":
+  - firstname: ["Patrick", "P."]
+
+"Moushegian":
+  - firstname: ["Sean", "S."]
+
+"Ye":
+  - firstname: ["David", "D."]
+
+"Xu":
+  - firstname: ["Haonan", "H."]
+
+"Fanelli":
+  - firstname: ["Viviana", "V."]
+
+"Zhou":
+  - firstname: ["Qingran", "Q."]
+
+"Liu":
+  - firstname: ["Eric", "E."]
+
+"Domeniconi":
+  - firstname: ["Giacomo", "G."]
+
+"Fathi":
+  - firstname: ["Ali", "A."]
+
+"Seregina":
+  - firstname: ["Ekaterina", "E."]
+
+"Juvinski":
+  - firstname: ["Luciano", "L."]
+
+"Li":
+  - firstname: ["Haochen", "H."]
+
+"Kolm":
+  - firstname: ["Petter", "P."]
