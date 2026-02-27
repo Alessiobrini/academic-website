@@ -13,7 +13,7 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website  # add your own keywords or leave empty
+keywords: machine learning, finance, DeFi, decentralized finance, digital assets, reinforcement learning, financial technology, FinTech, Duke University
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: network-wired-solid-full.svg  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
@@ -79,7 +79,7 @@ og_image: /assets/img/profile.jpg # The site-wide (default for all links) Open G
 github_username: Alessiobrini # your GitHub user name
 twitter_username: alessio_brini # your Twitter handle
 linkedin_username: alessioBrini # your LinkedIn user name
-scholar_userid: thrQtBcAAAAJ&hl # your Google Scholar ID
+scholar_userid: NHmzS7YAAAAJ # your Google Scholar ID
 orcid_id: 0000-0003-1121-818X # your ORCID ID
 
 
@@ -91,15 +91,15 @@ google_analytics:  # your Google Analytics measurement ID (format: G-XXXXXXXXXX)
 panelbear_analytics:  # panelbear analytics site ID (format: XXXXXXXXX)
 
 google_site_verification:  # your google-site-verification ID (Google Search Console)
-bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
+bing_site_verification:  # enter your bing-site-verification ID (Bing Webmaster)
 
 # -----------------------------------------------------------------------------
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: al-folio # blog_name will be displayed in your blog page
+blog_name: Alessio Brini # blog_name will be displayed in your blog page
 blog_nav_title: "" # your blog must have a title for it to be displayed in the nav bar
-blog_description: a simple whitespace theme for academics
+blog_description: Research notes on machine learning, finance, and decentralized finance
 permalink: /blog/:year/:title/
 
 # Pagination
