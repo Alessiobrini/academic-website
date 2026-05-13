@@ -171,6 +171,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - CLAUDE.md
   - _posts/2021-07-04-diagrams.md
 keep_files:
   - CNAME

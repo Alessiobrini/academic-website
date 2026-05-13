@@ -22,3 +22,6 @@ group :other_plugins do
     gem 'feedjira'
     gem 'httparty'
 end
+
+# Stdlib gem removed from defaults in Ruby 4.0; harmless on Ruby 3.3.5 (CI).
+gem 'ostruct'
