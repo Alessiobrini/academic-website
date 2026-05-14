@@ -28,8 +28,31 @@
 
         <!-- Entry bib key -->
         <div id="{{entry.key}}" class="col-sm-8">
-        <!-- Title -->
-        <div class="title">{{entry.title}}</div>
+        <!-- Resolve canonical URL: explicit url → DOI → arXiv → SSRN → parse journal field -->
+        {%- assign entry_url = nil -%}
+        {%- if entry.url -%}
+          {%- assign entry_url = entry.url -%}
+        {%- elsif entry.doi -%}
+          {%- assign entry_url = entry.doi | prepend: 'https://doi.org/' -%}
+        {%- elsif entry.arxiv -%}
+          {%- assign entry_url = entry.arxiv | prepend: 'https://arxiv.org/abs/' -%}
+        {%- elsif entry.ssrn -%}
+          {%- assign entry_url = entry.ssrn | prepend: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=' -%}
+        {%- elsif entry.journal contains 'arXiv:' -%}
+          {%- assign _arxiv_id = entry.journal | split: 'arXiv:' | last | strip -%}
+          {%- assign entry_url = _arxiv_id | prepend: 'https://arxiv.org/abs/' -%}
+        {%- elsif entry.journal contains 'SSRN' -%}
+          {%- assign _ssrn_id = entry.journal | split: 'SSRN' | last | strip -%}
+          {%- assign entry_url = _ssrn_id | prepend: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=' -%}
+        {%- endif -%}
+        <!-- Title (linked when a URL is available) -->
+        <div class="title">
+        {%- if entry_url -%}
+          <a href="{{ entry_url }}" target="_blank" rel="noopener">{{ entry.title }}</a>
+        {%- else -%}
+          {{ entry.title }}
+        {%- endif -%}
+        </div>
         <!-- Author -->
         <div class="author">
         {% assign author_array_size = entry.author_array | size %}

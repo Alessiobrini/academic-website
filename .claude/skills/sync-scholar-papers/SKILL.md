@@ -40,6 +40,31 @@ Trigger phrases:
    - For preprints: use the actual venue as the journal (e.g., `arXiv preprint arXiv:XXXX.XXXXX`, `Available at SSRN <id>`); set `keywords = {working-paper}`.
    - Insert at the top of the file to maintain newest-first ordering (matches `publications.md` which sorts by `year` desc anyway, but in-file ordering is a nice-to-have).
    - Use `selected = {true}` only if the user asks.
+   - **MUST populate a canonical URL** so the paper title on `/publications/` is clickable — see the URL resolution section below.
+
+## URL field (REQUIRED on every new entry)
+
+Each entry must resolve to a canonical URL that `_layouts/bib.html` reads in this priority order:
+
+1. **`url = {…}`** — explicit override (use only when nothing else is appropriate, e.g., a personal landing page).
+2. **`doi = {10.xxxx/yyyy}`** — for **all published papers**. Renders as `https://doi.org/<doi>`.
+3. **`arxiv = {XXXX.XXXXX}`** — explicit arXiv ID. Renders as `https://arxiv.org/abs/<id>`.
+4. **`ssrn = {NNNNNNN}`** — explicit SSRN ID. Renders as the SSRN abstract URL.
+5. As a fallback the template parses `journal` for `arXiv:` or `SSRN` patterns. **Don't rely on this for new entries** — set the explicit field above so the URL is robust to journal-text edits.
+
+### How to find the URL when drafting a new entry
+
+- **Published paper (journal or proceedings)**: look up the DOI via Crossref. The reliable one-liner:
+  ```bash
+  python3 -c "import urllib.request,urllib.parse,json; q=urllib.parse.urlencode({'query.bibliographic':'<TITLE> <VENUE>','rows':3}); print(json.dumps(json.loads(urllib.request.urlopen('https://api.crossref.org/works?'+q,timeout=10).read()),indent=2))" | head -60
+  ```
+  Pick the result whose `container-title` matches the venue and whose `title` matches the paper. Add it as `doi = {10.…}`.
+- **arXiv preprint**: the ID is visible in the Scholar venue (`arXiv preprint arXiv:XXXX.XXXXX`). Add `arxiv = {XXXX.XXXXX}`.
+- **SSRN working paper**: the ID is in the Scholar venue (`Available at SSRN <id>`). Add `ssrn = {<id>}`.
+- **ACM conference paper (ICAIF, etc.)**: Crossref returns the `10.1145/…` DOI.
+- **Institutional working paper with no public landing page** (e.g., DAREC working papers): omit URL fields — the title renders as plain text. Don't fabricate a URL.
+
+If Crossref returns multiple plausible matches, show them to the user and ask which is correct rather than guessing.
 
 ## After editing the bib
 
