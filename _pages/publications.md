@@ -9,9 +9,9 @@ nav_order: 1
 <div class="publications">
 
   <h2>Published Papers</h2>
-  {% bibliography -f papers -q @*[keywords=published]* --sort_by year --order descending --group_by none %}
+  {% bibliography -f papers -q @*[keywords=published]* --group_by year --group_order descending %}
 
   <h2>Working Papers</h2>
-  {% bibliography -f papers -q @*[keywords=working-paper]* --sort_by year --order descending --group_by none %}
+  {% bibliography -f papers -q @*[keywords=working-paper]* --group_by year --group_order descending %}
 
 </div>

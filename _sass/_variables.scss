@@ -36,3 +36,24 @@ $black-color: #000000 !default;
 
 $code-bg-color-light:     rgba($purple-color, 0.05);
 $code-bg-color-dark:      #2c3237 !default;
+
+
+// Custom typography stacks (used via CSS variables in _themes.scss)
+$font-serif:  'Source Serif 4', 'Source Serif Pro', 'Charter', 'Iowan Old Style', 'Apple Garamond', Georgia, serif;
+$font-sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-mono:   'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+
+// Editorial palette — paper-ink-burgundy
+$paper-light:   #FBFAF6;
+$paper-light-2: #F4F1E9;
+$ink-light:     #1A1A1A;
+$ink-muted:     #5B5B5B;
+$accent-light:  #7A1F2B;   // deep burgundy
+$accent-light-2:#A3343F;
+
+$paper-dark:    #15171A;
+$paper-dark-2:  #1F2125;
+$ink-dark:      #E8E5DE;
+$ink-dark-muted:#9C9A93;
+$accent-dark:   #D49AA1;   // muted rose
+$accent-dark-2: #B86D78;
