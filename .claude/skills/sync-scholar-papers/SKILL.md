@@ -66,6 +66,54 @@ Each entry must resolve to a canonical URL that `_layouts/bib.html` reads in thi
 
 If Crossref returns multiple plausible matches, show them to the user and ask which is correct rather than guessing.
 
+## Cover image / logo (`preview` field — REQUIRED on every new entry that has one available)
+
+The left column on `/publications/` shows `entry.preview` (an image in `assets/img/publication_preview/`). Reuse the existing shared logos when applicable, and probe publisher CDNs for the journal cover otherwise. **Never fabricate a cover.** If you cannot find one, omit `preview` and the template renders an academicon fallback.
+
+### Step 1 — reuse a shared logo if it applies
+
+These are already in `assets/img/publication_preview/` and should be reused, not re-downloaded:
+
+| Venue                                       | `preview` value |
+| ------------------------------------------- | --------------- |
+| arXiv preprint                              | `arxiv.jpg`     |
+| SSRN working paper                          | `ssrn.png`      |
+| ACM conference proceedings (ICAIF, etc.)    | `acm.svg`       |
+
+Rationale for `acm.svg` on ACM proceedings: per-conference logos (e.g., ICAIF'24 vs ICAIF'25) change every year, so the stable ACM mark is preferred.
+
+### Step 2 — reuse a per-journal cover already in the folder
+
+Every journal we have a paper in already has a cover. Check `ls assets/img/publication_preview/` first. Current covers:
+
+| Journal                                                    | `preview` value           |
+| ---------------------------------------------------------- | ------------------------- |
+| International Journal of Forecasting (IJF)                 | `ijf.jpg`                 |
+| Economic Modelling                                         | `econ-modelling.jpg`      |
+| Economics Letters                                          | `econ-letters.jpg`        |
+| Journal of Financial Stability                             | `jfs.jpg`                 |
+| Physica A: Statistical Mechanics and its Applications      | `physica-a.jpg`           |
+| Soft Computing                                             | `soft-computing.jpg`      |
+| Financial Innovation                                       | `financial-innovation.jpg`|
+| The Journal of Financial Data Science (JFDS)               | `jfds.gif`                |
+
+If the new paper is in one of these journals, reuse the existing file. Do not re-download.
+
+### Step 3 — download a new cover for a new journal
+
+When the paper is in a journal we haven't covered yet, fetch from the publisher's public CDN. These have worked reliably:
+
+- **Elsevier (DOI prefix `10.1016`)**: `https://ars.els-cdn.com/content/image/X{ISSN_no_dash}.jpg`. Look up the ISSN on the journal's ScienceDirect landing page or Crossref.
+- **Springer (DOI prefix `10.1007` or `10.1186`)**: `https://media.springernature.com/w400/springer-static/cover/journal/{journal_code}.jpg`. The numeric `journal_code` is the path on `link.springer.com/journal/{code}` for SpringerLink journals, or `40854` for `jfin-swufe.springeropen.com` style SpringerOpen journals (find it on the journal's landing page).
+- **Portfolio Management Research / Institutional Investor Journals (DOI prefix `10.3905`)**: `https://www.pm-research.com/content/iij<abbrev>/<vol>/<iss>.cover.gif` (e.g., `iijjfds/8/2.cover.gif`). The page requires a browser User-Agent header — pass `-A "Mozilla/5.0 …"` to `curl`. Use the latest issue's vol/iss.
+- **Other publishers**: probe the journal's homepage for an `<img>` whose src/href contains `cover` (`curl -sL '<journal-url>' | grep -oiE '<src|href>="[^"]*cover[^"]*"'`). If nothing is publicly served, omit `preview` and let the academicon fallback render — do not generate a fake cover.
+
+Save under `assets/img/publication_preview/<slug>.<ext>` using a short kebab-case slug (e.g., `quant-finance.jpg`). Add it to this skill's reference table so future runs find it.
+
+### After populating `preview`
+
+The publisher-icon fallback in `bib.html` only renders when `preview` is absent. So if you set `preview = 'foo.jpg'`, the academicon and the DOI-prefix-derived publisher icon both disappear — the cover replaces them. That is intended.
+
 ## After editing the bib
 
 1. Run a Jekyll build to confirm BibTeX parses: `bundle exec jekyll build` (Ruby path may need to be set — see CLAUDE.md). The `jekyll-scholar` plugin will error loudly on malformed entries.

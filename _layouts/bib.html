@@ -1,9 +1,54 @@
 ---
 ---
 <!-- _layouts/bib.html -->
+      {%- comment -%} Resolve canonical URL once for the whole entry {%- endcomment -%}
+      {%- assign entry_url = nil -%}
+      {%- if entry.url -%}
+        {%- assign entry_url = entry.url -%}
+      {%- elsif entry.doi -%}
+        {%- assign entry_url = entry.doi | prepend: 'https://doi.org/' -%}
+      {%- elsif entry.arxiv -%}
+        {%- assign entry_url = entry.arxiv | prepend: 'https://arxiv.org/abs/' -%}
+      {%- elsif entry.ssrn -%}
+        {%- assign entry_url = entry.ssrn | prepend: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=' -%}
+      {%- elsif entry.journal contains 'arXiv:' -%}
+        {%- assign _arxiv_id = entry.journal | split: 'arXiv:' | last | strip -%}
+        {%- assign entry_url = _arxiv_id | prepend: 'https://arxiv.org/abs/' -%}
+      {%- elsif entry.journal contains 'SSRN' -%}
+        {%- assign _ssrn_id = entry.journal | split: 'SSRN' | last | strip -%}
+        {%- assign entry_url = _ssrn_id | prepend: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=' -%}
+      {%- endif -%}
+
+      {%- comment -%} Pick a venue/publisher academicon: arXiv / SSRN / publisher-from-DOI {%- endcomment -%}
+      {%- assign pub_icon = nil -%}
+      {%- assign pub_label = nil -%}
+      {%- if entry.arxiv or entry.journal contains 'arXiv:' -%}
+        {%- assign pub_icon = 'ai ai-arxiv' -%}
+        {%- assign pub_label = 'arXiv' -%}
+      {%- elsif entry.ssrn or entry.journal contains 'SSRN' -%}
+        {%- assign pub_icon = 'ai ai-ssrn' -%}
+        {%- assign pub_label = 'SSRN' -%}
+      {%- elsif entry.doi -%}
+        {%- assign _doi_prefix = entry.doi | split: '/' | first -%}
+        {%- if _doi_prefix == '10.1016' -%}
+          {%- assign pub_icon = 'ai ai-elsevier' -%}
+          {%- assign pub_label = 'Elsevier' -%}
+        {%- elsif _doi_prefix == '10.1007' or _doi_prefix == '10.1186' -%}
+          {%- assign pub_icon = 'ai ai-springer' -%}
+          {%- assign pub_label = 'Springer' -%}
+        {%- elsif _doi_prefix == '10.1145' -%}
+          {%- assign pub_icon = 'ai ai-acm' -%}
+          {%- assign pub_label = 'ACM' -%}
+        {%- else -%}
+          {%- assign pub_icon = 'ai ai-doi' -%}
+          {%- assign pub_label = 'DOI' -%}
+        {%- endif -%}
+      {%- endif -%}
+
       <div class="row">
         <div class="col-sm-2 {% if entry.preview %}preview{% else %}abbr{% endif %}">
         {%- if entry.preview -%}
+          {%- if entry_url -%}<a class="pub-cover-link" href="{{ entry_url }}" target="_blank" rel="noopener">{%- endif -%}
           {% if entry.preview contains '://' -%}
           <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
           {%- else -%}
@@ -13,6 +58,7 @@
             class="preview z-depth-1 rounded"
             alt=entry.preview -%}
           {%- endif -%}
+          {%- if entry_url -%}</a>{%- endif -%}
         {%- elsif entry.abbr -%}
           {%- if site.data.venues[entry.abbr] -%}
             {%- assign venue_style = nil -%}
@@ -23,28 +69,17 @@
           {%- else -%}
             <abbr class="badge">{{entry.abbr}}</abbr>
           {%- endif -%}
+        {%- elsif pub_icon -%}
+          {%- if entry_url -%}
+            <a class="pub-icon" href="{{ entry_url }}" title="{{ pub_label }}" target="_blank" rel="noopener"><i class="{{ pub_icon }}"></i></a>
+          {%- else -%}
+            <span class="pub-icon" title="{{ pub_label }}"><i class="{{ pub_icon }}"></i></span>
+          {%- endif -%}
         {%- endif -%}
         </div>
 
         <!-- Entry bib key -->
         <div id="{{entry.key}}" class="col-sm-8">
-        <!-- Resolve canonical URL: explicit url → DOI → arXiv → SSRN → parse journal field -->
-        {%- assign entry_url = nil -%}
-        {%- if entry.url -%}
-          {%- assign entry_url = entry.url -%}
-        {%- elsif entry.doi -%}
-          {%- assign entry_url = entry.doi | prepend: 'https://doi.org/' -%}
-        {%- elsif entry.arxiv -%}
-          {%- assign entry_url = entry.arxiv | prepend: 'https://arxiv.org/abs/' -%}
-        {%- elsif entry.ssrn -%}
-          {%- assign entry_url = entry.ssrn | prepend: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=' -%}
-        {%- elsif entry.journal contains 'arXiv:' -%}
-          {%- assign _arxiv_id = entry.journal | split: 'arXiv:' | last | strip -%}
-          {%- assign entry_url = _arxiv_id | prepend: 'https://arxiv.org/abs/' -%}
-        {%- elsif entry.journal contains 'SSRN' -%}
-          {%- assign _ssrn_id = entry.journal | split: 'SSRN' | last | strip -%}
-          {%- assign entry_url = _ssrn_id | prepend: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=' -%}
-        {%- endif -%}
         <!-- Title (linked when a URL is available) -->
         <div class="title">
         {%- if entry_url -%}

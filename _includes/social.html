@@ -2,7 +2,7 @@
             <a href="mailto:{{ site.email | encode_email }}" title="email"><i class="fas fa-envelope"></i></a>
             {% endif %}
             {%- if site.cv_pdf -%}
-            <a href="{{ site.cv_pdf | prepend: '/assets/pdf/' | relative_url }}" title="Curriculum Vitae (PDF)" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i></a>
+            <a href="{{ site.cv_pdf | prepend: '/assets/pdf/' | relative_url }}" title="Curriculum Vitae (PDF)" target="_blank" rel="noopener"><i class="fas fa-user-graduate"></i></a>
             {% endif %}
             {%- if site.telegram_username -%}
             <a href="https://telegram.me/{{ site.telegram_username }}" title="telegram"><i class="fab fa-telegram"></i></a>
