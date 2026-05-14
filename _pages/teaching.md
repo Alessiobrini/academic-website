@@ -2,31 +2,42 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Graduate- and professional-level courses in machine learning, data science, and statistics for financial technology.
+description: Graduate and professional courses on machine learning, data science, and statistics for financial technology.
 nav: true
 nav_order: 5
 ---
 
-## Duke University · Pratt School of Engineering
+<div class="teaching">
 
-### FINTECH 540: Machine Learning for FinTech
-- **Format:** Graduate course on machine learning applications across the fintech industry.
-- **Highlights:** Explored how supervised, unsupervised, and reinforcement learning techniques address rapidly evolving challenges in digital finance through extensive coding sessions that use real financial data.
+  <h2>Duke University &mdash; Pratt School of Engineering</h2>
+  <p class="teaching-affiliation">Master of Engineering in Financial Technology, Digital Asset Research &amp; Engineering Collaborative (DAREC)</p>
 
-### FINTECH/ECE 590: Data Wrangling and Visualization with Python
-- **Format:** Graduate special topics course cross-listed in Electrical & Computer Engineering.
-- **Highlights:** Focused on end-to-end data pipelines for analytics, covering Python-based querying, cleaning, manipulation, and visualization with tools such as SQL, web scraping workflows, and modern data-collection practices.
+  <ul class="course-list">
+    <li class="course-item">
+      <div class="course-line"><span class="course-code">FINTECH 540</span><span class="course-title">Machine Learning for FinTech</span></div>
+      <p class="course-desc">Students implement supervised, unsupervised, and reinforcement-learning models in Python and apply them to real financial datasets in weekly coding labs.</p>
+    </li>
+    <li class="course-item">
+      <div class="course-line"><span class="course-code">FINTECH / ECE 590</span><span class="course-title">Data Wrangling and Visualization with Python</span></div>
+      <p class="course-desc">End-to-end Python pipelines: query relational and document stores, scrape and clean live data, transform with pandas, and visualize results with publication-grade plots.</p>
+    </li>
+    <li class="course-item">
+      <div class="course-line"><span class="course-code">FINTECH 520</span><span class="course-title">Introduction to Statistics and Econometrics</span></div>
+      <p class="course-desc">Probability, inference, and regression developed through Python notebooks on real financial data — students re-derive every estimator and code it before applying it.</p>
+    </li>
+    <li class="course-item">
+      <div class="course-line"><span class="course-code">FINTECH 502</span><span class="course-title">FinTech Capstone</span></div>
+      <p class="course-desc">Semester-long industry-sponsored project: student teams ship a working prototype to a partner organization, from problem framing through code to stakeholder presentation.</p>
+    </li>
+  </ul>
 
-### FINTECH 502: FinTech Capstones
-- **Format:** Experiential learning capstone for FinTech MEng students.
-- **Highlights:** Guided student consulting teams as they delivered industry-sponsored projects that translate quantitative finance and machine learning research into deployable solutions for partner organizations.
+  <h2>University of Florence &mdash; School of Economics and Management</h2>
 
-### FINTECH 520: Introduction to Statistics
-- **Format:** Core quantitative foundations course for incoming FinTech graduate students.
-- **Highlights:** Built the statistical toolkit—probability, inference, and modeling—required for advanced financial technology coursework and applied research.
+  <ul class="course-list">
+    <li class="course-item">
+      <div class="course-line"><span class="course-code">UNIFI</span><span class="course-title">Python for Data Science</span></div>
+      <p class="course-desc">Hands-on training in Python and the scientific stack (NumPy, pandas, matplotlib) for data analysis, anchored on case-study notebooks that participants build and extend.</p>
+    </li>
+  </ul>
 
-## University of Florence · School of Economics and Management
-
-### Python for Data Science (March–May & September–December 2020)
-- **Format:** Professional training program for students and practitioners.
-- **Highlights:** Introduced Python fundamentals alongside the scientific stack (NumPy, pandas, matplotlib, and related libraries) to support data analysis and the extraction of actionable insights.
+</div>

@@ -879,6 +879,87 @@ footer.sticky-bottom {
   }
 }
 
+// Teaching page
+
+.teaching {
+  margin-top: 2rem;
+
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.55rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--global-theme-color);
+    display: inline-block;
+    letter-spacing: -0.005em;
+  }
+
+  .teaching-affiliation {
+    font-size: 0.92rem;
+    color: var(--global-text-color-light);
+    margin-bottom: 1.5rem;
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  .course-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 2.25rem 0;
+  }
+
+  .course-item {
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--global-divider-color);
+
+    &:last-child { border-bottom: none; }
+  }
+
+  .course-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .course-code {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--global-theme-color);
+    border: 1px solid var(--global-theme-color);
+    border-radius: 2px;
+    padding: 0.1rem 0.55rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-right: 0.25rem;
+  }
+
+  .course-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--global-text-color);
+    line-height: 1.3;
+    flex: 1 1 auto;
+  }
+
+  .course-desc {
+    font-size: 0.92rem;
+    color: var(--global-text-color-light);
+    line-height: 1.55;
+    margin: 0;
+  }
+}
+
+
 // Rouge Color Customization
 figure.highlight {
   margin: 0 0 1rem;
