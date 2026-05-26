@@ -90,6 +90,7 @@ cv_pdf: cv_brini.pdf # filename under assets/pdf/ — surfaced as a download ico
 
 google_analytics:  # your Google Analytics measurement ID (format: G-XXXXXXXXXX)
 panelbear_analytics:  # panelbear analytics site ID (format: XXXXXXXXX)
+goatcounter_analytics: alessiobrini  # your GoatCounter site code (the XXX in XXX.goatcounter.com)
 
 google_site_verification:  # your google-site-verification ID (Google Search Console)
 bing_site_verification:  # enter your bing-site-verification ID (Bing Webmaster)
@@ -319,6 +320,7 @@ jekyll-diagrams:
 
 enable_google_analytics:    false  # enables google analytics
 enable_panelbear_analytics: false  # enables panelbear analytics
+enable_goatcounter_analytics: true  # enables GoatCounter analytics
 enable_google_verification: false  # enables google site verification
 enable_bing_verification:   false  # enables bing site verification
 enable_masonry:             true   # enables automatic project cards arrangement
