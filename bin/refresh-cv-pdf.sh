@@ -9,7 +9,7 @@
 # Usage: bin/refresh-cv-pdf.sh
 set -euo pipefail
 
-CV_REPO="${CV_REPO:-$HOME/Academia/Academic-CV-Alessio}"
+CV_REPO="${CV_REPO:-$HOME/Academia/CV-Alessio}"
 SITE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 DEST_PDF="$SITE_DIR/assets/pdf/cv_brini.pdf"
 
