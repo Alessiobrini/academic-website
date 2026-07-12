@@ -25,7 +25,7 @@ The `bin/deploy` script is a legacy manual-deploy path — **do not run it**. De
 ## Repository layout
 
 - `_config.yml` — site-wide settings (title, bio blurb, social links, theme, plugin config). Edit here for the description shown under the name on the homepage.
-- `_pages/` — top-level pages: `about.md` (homepage), `publications.md`, `teaching.md`, `projects.md`, `repositories.md`. Each declares `permalink:` and nav order in front matter. `cv.md` is a stub that redirects `/cv/` to the served PDF (see CV section below).
+- `_pages/` — top-level pages: `about.md` (homepage), `publications.md`, `teaching.md`. Each declares `permalink:` and nav order in front matter. `cv.md` is a stub that redirects `/cv/` to the served PDF (see CV section below). Only these three (plus the CV redirect) are live: al-folio's `projects.md`, `repositories.md`, `dropdown.md`, and the `_projects/` demo collection were deleted so no orphan URLs build. Do not re-add them.
 - `_bibliography/papers.bib` — **source of truth for publications.** Entries are filtered on `_pages/publications.md` by the `keywords` field (`published` vs. `working-paper`). Sorted by `year` descending.
 - `_data/` — structured YAML: `coauthors.yml`, `venues.yml`, `repositories.yml`.
 - `_news/` — short announcement posts shown on the homepage when `news: true`.
