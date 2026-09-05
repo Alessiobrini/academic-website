@@ -40,6 +40,7 @@ The `bin/deploy` script is a legacy manual-deploy path — **do not run it**. De
 - **Adding a news item**: drop a markdown file in `_news/` (e.g., `announcement_4.md`) following the existing front matter. Items render in date order.
 - **Updating the CV**: the CV is **not** maintained in this repo. Its single source of truth is the dedicated, Overleaf-bridged repo [`Alessiobrini/Academic-CV-Alessio`](https://github.com/Alessiobrini/Academic-CV-Alessio) (`main.tex` + `resume.cls`, local checkout at `~/Academia/CV-Alessio/`). Edit there or on Overleaf. This site only serves the compiled PDF at `assets/pdf/cv_brini.pdf` (linked from a homepage social icon; `/cv/` redirects to it via the `_pages/cv.md` stub). To publish a new CV version, run `bin/refresh-cv-pdf.sh` (pulls the CV repo, compiles, copies the PDF here), then commit `assets/pdf/cv_brini.pdf`. Do not re-add a `cv-source/` folder — it was retired to avoid a duplicate `.tex` diverging from the canonical repo.
 - **Updating the homepage bio**: edit `_pages/about.md` (prose) or `_config.yml` (the short description / contact lines under the name).
+- **Keeping the research profile in sync**: this site is the upstream source for Alessio's research profile at `~/.claude/research/` (agenda derives from `_pages/about.md`, collaborators from `_data/coauthors.yml`, and `publications.md` is reconciled against `_bibliography/papers.bib`). After editing the bio, adding a coauthor, or adding a paper here, run `/research-sync` and review `~/.claude/research/agenda.md` so the two do not drift.
 
 ## Style
 
