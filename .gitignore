@@ -9,3 +9,6 @@ _site
 Gemfile.lock
 vendor
 
+
+# Untracked executive/private CV variant (rebuildable, never deployed)
+executive-cv/
