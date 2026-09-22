@@ -4,14 +4,14 @@
 # `date` is the date the talk was given (not the date the video was posted).
 # Entries are sorted by date on render, newest first, so order here does not matter.
 
-- title: "New Faculty Spotlight"
+- title: "AI in Finance and Economics: From Data to Decisions that Matter"
   kind: "Conference talk"
-  event: "Conference on Society-Centered AI (SCAI 2026)"
+  event: "Conference on Society-Centered AI (SCAI 2026), New Faculty Spotlight"
   location: "Fuqua School of Business, Duke University"
   date: 2026-02-12
   length: "17 min"
   youtube: "niflrFHwoLE"
-  description: "Research presentation in the new faculty session of Duke's conference on the societal impact of artificial intelligence, held February 12 to 14, 2026."
+  description: "Research presentation at Duke's conference on the societal impact of artificial intelligence, held February 12 to 14, 2026."
 
 - title: "Reinforcement Learning for Sequential Decision-Making: A Data-Driven Approach"
   kind: "Invited seminar"
