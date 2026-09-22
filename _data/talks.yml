@@ -1,0 +1,22 @@
+# Recorded talks shown on /talks/.
+# One entry per recording. `youtube` is the video id: the page derives both the
+# watch link and the thumbnail from it, so no image needs to be committed here.
+# `date` is the date the talk was given (not the date the video was posted).
+# Entries are sorted by date on render, newest first, so order here does not matter.
+
+- title: "New Faculty Spotlight"
+  kind: "Conference talk"
+  event: "Conference on Society-Centered AI (SCAI 2026)"
+  location: "Fuqua School of Business, Duke University"
+  date: 2026-02-12
+  length: "17 min"
+  youtube: "niflrFHwoLE"
+  description: "Research presentation in the new faculty session of Duke's conference on the societal impact of artificial intelligence, held February 12 to 14, 2026."
+
+- title: "Reinforcement Learning for Sequential Decision-Making: A Data-Driven Approach"
+  kind: "Invited seminar"
+  event: "CrunchDAO"
+  date: 2023-12-14
+  length: "69 min"
+  youtube: "aa_F310Sc0Y"
+  description: "Invited seminar on value-based and policy-based reinforcement learning algorithms for financial decision problems, following the line of work developed in my doctoral thesis at Scuola Normale Superiore."
