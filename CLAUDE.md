@@ -34,6 +34,7 @@ The `bin/deploy` script is a legacy manual-deploy path — **do not run it**. De
 - `llms.txt`, `llms-full.txt` — plain-text summaries of the site for AI agents (llmstxt.org convention), built from `_includes/llms_body.txt` and `_includes/llms_papers.txt`. Publications come from `papers.bib` and talks from `_data/talks.yml`, so both files update themselves. `llms-full.txt` adds every abstract. Both must stay in the `jekyll-minifier` `exclude` list in `_config.yml`, because the minifier runs only when `JEKYLL_ENV=production` (as in CI) and treats a `.txt` page as HTML, which collapses it onto one line. Build with `JEKYLL_ENV=production` to check them.
 - Schema.org JSON-LD lives in `_includes/metadata.html`: a `Person` on every page, and on `/publications/` one `ScholarlyArticle` per bib entry. Validate it after template edits by parsing every `<script type="application/ld+json">` block in `_site/` as JSON.
 - `assets/` — images, PDFs, CSS, JS.
+- `google237cce16d70f0f01.html` — Google Search Console ownership file (added 2026-09-29). Do not delete or edit it, or the property loses verification. It is excluded from the sitemap and from `jekyll-minifier` in `_config.yml` so it is served byte for byte.
 
 ## Editing conventions
 
