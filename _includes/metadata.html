@@ -23,6 +23,7 @@
     {%- else -%}
         {%- capture title -%}{{ site.title }}{%- endcapture -%}
     {%- endif -%}
+    {%- assign title = title | normalize_whitespace | strip -%}
     {% if page.url == '/blog/index.html' %}
         {{ site.blog_nav_title }} | {{ title }}
     {%- elsif page.title != "blank" and page.url != "/" -%}
@@ -35,8 +36,8 @@
         {{ title }}
     {%- endif -%}
     </title>
-    <meta name="author" content="{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" />
-    <meta name="description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    <meta name="author" content="{{ title }}" />
+    <meta name="description" content="{%- if page.description -%}{{ page.description | strip | escape }}{%- else -%}{{ site.description | strip | escape }}{%- endif -%}" />
 {%- if page.keywords or site.keywords %}
     <meta name="keywords" content="{%- if page.keywords -%}{{ page.keywords }}{%- else -%}{{ site.keywords }}{%- endif -%}" />
 {%- endif %}
@@ -48,7 +49,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{%- if page.title -%}{{ title }} | {{ page.title }}{%- else -%}{{ title }}{%- endif -%}" />
     <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url | remove_first: 'index.html' }}" />
-    <meta property="og:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    <meta property="og:description" content="{%- if page.description -%}{{ page.description | strip | escape }}{%- else -%}{{ site.description | strip | escape }}{%- endif -%}" />
     {% if page.og_image or site.og_image -%}
     <meta property="og:image" content="{%- if page.og_image -%}{{ page.og_image }}{%- else -%}{{ site.og_image }}{%- endif -%}" />
     {%- endif %}
@@ -57,7 +58,7 @@
     <!-- Twitter card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{%- if page.title -%}{{ page.title }}{%- else -%}{{ title }}{%- endif -%}" />
-    <meta name="twitter:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    <meta name="twitter:description" content="{%- if page.description -%}{{ page.description | strip | escape }}{%- else -%}{{ site.description | strip | escape }}{%- endif -%}" />
     {% if page.og_image or site.og_image -%}
     <meta name="twitter:image" content="{%- if page.og_image -%}{{ page.og_image }}{%- else -%}{{ site.og_image }}{%- endif -%}" />
     {%- endif %}
@@ -184,26 +185,122 @@
         {%- capture link -%}https://discord.com/users/{{ site.discord_id }}{%- endcapture -%}
         {%- assign sameaslinks = sameaslinks | push: link -%}
     {%- endif -%}
-    {%- if sameaslinks != blank -%}
-        {%- assign sameaslinks = sameaslinks | split: "" -%}
+    {%- comment -%}
+      One @graph per page: the Person (identity, affiliation, topics, profiles),
+      the page itself, and on /publications/ one ScholarlyArticle per entry of
+      papers.bib (exposed as site.data.papers by _plugins/bib_data.rb). Every
+      string goes through jsonify so quotes and newlines cannot break the JSON.
+    {%- endcomment -%}
+    {%- assign site_root = site.url | append: site.baseurl -%}
+    {%- assign person_id = site_root | append: '/#person' -%}
+    {%- assign ld_url = page.url | prepend: site_root | remove_first: 'index.html' -%}
+    {%- if page.url == '/' -%}
+      {%- assign ld_type = 'ProfilePage' -%}
+    {%- elsif page.url == '/publications/' -%}
+      {%- assign ld_type = 'CollectionPage' -%}
+    {%- else -%}
+      {%- assign ld_type = 'WebPage' -%}
+    {%- endif -%}
+    {%- if page.description -%}
+      {%- assign ld_description = page.description | strip -%}
+    {%- else -%}
+      {%- assign ld_description = site.description | strip -%}
+    {%- endif -%}
+    {%- if page.title and page.title != 'blank' and page.url != '/' -%}
+      {%- assign ld_name = page.title | append: ' | ' | append: title -%}
+    {%- else -%}
+      {%- assign ld_name = title -%}
     {%- endif -%}
 
     <script type="application/ld+json">
       {
-        "author":
-        {
-          "@type": "Person",
-          "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}"
-        },
-        "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-        "@type": "WebSite",
-        "description": "{%- if page.description -%}{{ page.description }}{%- else if site.description -%}{{ site.description }}{%- endif -%}",
-        "headline": "{%- if page.title -%}{{ page.title }}{%- else -%}{{ site.title }}{%- endif -%}",
-        {% if sameaslinks != blank -%}
-        "sameAs": {{ sameaslinks }},
-        {%- endif %}
-        "name": "{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}",
-        "@context": "https://schema.org"
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": {{ person_id | jsonify }},
+            "name": {{ title | jsonify }},
+            "givenName": {{ site.first_name | jsonify }},
+            "familyName": {{ site.last_name | jsonify }},
+            "url": {{ site_root | append: '/' | jsonify }},
+            "image": {{ site.author.avatar | prepend: site_root | jsonify }},
+            "description": {{ site.description | strip | jsonify }}
+            {%- if site.person.job_title %},
+            "jobTitle": {{ site.person.job_title | jsonify }}
+            {%- endif %}
+            {%- if site.person.works_for %},
+            "worksFor": {
+              "@type": "CollegeOrUniversity",
+              "name": {{ site.person.works_for | jsonify }},
+              "url": {{ site.person.works_for_url | jsonify }}
+              {%- if site.person.department %},
+              "department": { "@type": "Organization", "name": {{ site.person.department | jsonify }} }
+              {%- endif %}
+            }
+            {%- endif %}
+            {%- if site.person.alumni_of %},
+            "alumniOf": { "@type": "CollegeOrUniversity", "name": {{ site.person.alumni_of | jsonify }}, "url": {{ site.person.alumni_of_url | jsonify }} }
+            {%- endif %}
+            {%- if site.person.knows_about %},
+            "knowsAbout": {{ site.person.knows_about | jsonify }}
+            {%- endif %}
+            {%- if site.orcid_id %},
+            "identifier": { "@type": "PropertyValue", "propertyID": "ORCID", "value": {{ site.orcid_id | jsonify }} }
+            {%- endif %}
+            {%- if sameaslinks != blank %},
+            "sameAs": {{ sameaslinks | jsonify }}
+            {%- endif %}
+          },
+          {
+            "@type": {{ ld_type | jsonify }},
+            "@id": {{ ld_url | jsonify }},
+            "url": {{ ld_url | jsonify }},
+            "name": {{ ld_name | jsonify }},
+            "description": {{ ld_description | jsonify }},
+            "inLanguage": {{ site.lang | jsonify }},
+            {%- if ld_type == 'ProfilePage' %}
+            "mainEntity": { "@id": {{ person_id | jsonify }} }
+            {%- else %}
+            "author": { "@id": {{ person_id | jsonify }} },
+            "about": { "@id": {{ person_id | jsonify }} }
+            {%- endif %}
+            {%- if page.url == '/publications/' and site.data.papers %},
+            "hasPart": [
+              {%- for paper in site.data.papers %}
+              {
+                "@type": "ScholarlyArticle",
+                "name": {{ paper.title | jsonify }},
+                "headline": {{ paper.title | jsonify }},
+                "author": [
+                  {%- for author in paper.authors -%}
+                    {%- if author == site.author.name -%}
+                  { "@id": {{ person_id | jsonify }} }
+                    {%- else -%}
+                  { "@type": "Person", "name": {{ author | jsonify }} }
+                    {%- endif -%}
+                    {%- unless forloop.last %}, {% endunless -%}
+                  {%- endfor -%}
+                ],
+                "datePublished": {{ paper.year | jsonify }},
+                "creativeWorkStatus": {% if paper.status == 'published' %}"Published"{% else %}"Working paper"{% endif %}
+                {%- if paper.venue and paper.status == 'published' %},
+                "isPartOf": { "@type": {% if paper.type == 'inproceedings' %}"Book"{% else %}"Periodical"{% endif %}, "name": {{ paper.venue | jsonify }} }
+                {%- endif %}
+                {%- if paper.url %},
+                "url": {{ paper.url | jsonify }}
+                {%- endif %}
+                {%- if paper.doi %},
+                "sameAs": {{ paper.doi | prepend: 'https://doi.org/' | jsonify }}
+                {%- endif %}
+                {%- if paper.abstract %},
+                "abstract": {{ paper.abstract | jsonify }}
+                {%- endif %}
+              }{% unless forloop.last %},{% endunless %}
+              {%- endfor %}
+            ]
+            {%- endif %}
+          }
+        ]
       }
     </script>
 {%- endif %}

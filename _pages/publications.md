@@ -2,6 +2,7 @@
 layout: page
 permalink: /publications/
 title: publications
+description: Peer-reviewed articles and working papers on machine learning in finance, volatility forecasting, reinforcement learning for trading and hedging, and decentralized finance.
 nav: true
 nav_order: 1
 ---

@@ -24,22 +24,23 @@ The `bin/deploy` script is a legacy manual-deploy path — **do not run it**. De
 
 ## Repository layout
 
-- `_config.yml` — site-wide settings (title, bio blurb, social links, theme, plugin config). Edit here for the description shown under the name on the homepage.
+- `_config.yml` — site-wide settings (title, social links, theme, plugin config). `description` is the default meta description that search engines and AI agents read (it is not displayed on any page), and the `person:` block holds the structured identity (job title, affiliation, alma mater, research topics, obfuscated contact) that feeds the Schema.org data and `/llms.txt`.
 - `_pages/` — top-level pages: `about.md` (homepage), `publications.md`, `teaching.md`. Each declares `permalink:` and nav order in front matter. `cv.md` is a stub that redirects `/cv/` to the served PDF (see CV section below). Only these three (plus the CV redirect) are live: al-folio's `projects.md`, `repositories.md`, `dropdown.md`, and the `_projects/` demo collection were deleted so no orphan URLs build. Do not re-add them.
 - `_bibliography/papers.bib` — **source of truth for publications.** Entries are filtered on `_pages/publications.md` by the `keywords` field (`published` vs. `working-paper`). Sorted by `year` descending.
 - `_data/` — structured YAML: `coauthors.yml`, `venues.yml`, `repositories.yml`.
-- `_news/` — short announcement posts shown on the homepage when `news: true`.
-- `_projects/`, `_posts/` — collections for project cards and blog posts.
+- There is no blog and no news feed. al-folio's demo `_posts/`, `_news/`, `blog/index.html` and `news.html` were deleted because crawlers indexed the 2015 sample posts as Alessio's content. `blog_nav_title` must stay empty rather than `""`, since an empty string is truthy in Liquid and renders an invisible nav link to `/blog/`.
 - `_includes/`, `_layouts/`, `_sass/` — theme internals. Avoid editing unless making a real layout change.
-- `_plugins/` — custom Ruby plugins (`details.rb`, `external-posts.rb`, `hideCustomBibtex.rb`).
+- `_plugins/` — custom Ruby plugins (`details.rb`, `external-posts.rb`, `hideCustomBibtex.rb`, `bib_data.rb`). `bib_data.rb` parses `papers.bib` into `site.data.papers` so templates outside jekyll-scholar can loop over the publications.
+- `llms.txt`, `llms-full.txt` — plain-text summaries of the site for AI agents (llmstxt.org convention), built from `_includes/llms_body.txt` and `_includes/llms_papers.txt`. Publications come from `papers.bib` and talks from `_data/talks.yml`, so both files update themselves. `llms-full.txt` adds every abstract.
+- Schema.org JSON-LD lives in `_includes/metadata.html`: a `Person` on every page, and on `/publications/` one `ScholarlyArticle` per bib entry. Validate it after template edits by parsing every `<script type="application/ld+json">` block in `_site/` as JSON.
 - `assets/` — images, PDFs, CSS, JS.
 
 ## Editing conventions
 
-- **Adding a publication**: append a BibTeX entry to `_bibliography/papers.bib`. Set `keywords={published}` or `keywords={working-paper}` so it routes to the right section. Use `selected={true}` to surface it on the homepage. Include `year` (publications sort on it). Optional fields: `pdf`, `code`, `website`, `abstract`, `bibtex_show`.
-- **Adding a news item**: drop a markdown file in `_news/` (e.g., `announcement_4.md`) following the existing front matter. Items render in date order.
+- **Adding a publication**: append a BibTeX entry to `_bibliography/papers.bib`. Set `keywords={published}` or `keywords={working-paper}` so it routes to the right section. Use `selected={true}` to surface it on the homepage. Include `year` (publications sort on it). Optional fields: `pdf`, `code`, `website`, `abstract`, `bibtex_show`. Always add the `abstract` when one exists: it is hidden behind the Abs button but it is still in the HTML, the JSON-LD and `/llms-full.txt`, and it is the text agents match a research question against. Use the published abstract verbatim (Crossref or OpenAlex by DOI, arXiv for preprints) and escape `&`, `%` and `$` as `\&`, `\%` and `\$`. When the open indexes do not carry one (Elsevier withholds its abstracts), ask Alessio to paste it. `brini2022crypto`, the DAREC white paper, has no abstract by Alessio's choice (2026-09-29), so leave it without one.
 - **Updating the CV**: the CV is **not** maintained in this repo. Its single source of truth is the dedicated, Overleaf-bridged repo [`Alessiobrini/Academic-CV-Alessio`](https://github.com/Alessiobrini/Academic-CV-Alessio) (`main.tex` + `resume.cls`, local checkout at `~/Academia/CV-Alessio/`). Edit there or on Overleaf. This site only serves the compiled PDF at `assets/pdf/cv_brini.pdf` (linked from a homepage social icon; `/cv/` redirects to it via the `_pages/cv.md` stub). To publish a new CV version, run `bin/refresh-cv-pdf.sh` (pulls the CV repo, compiles, copies the PDF here), then commit `assets/pdf/cv_brini.pdf`. Do not re-add a `cv-source/` folder — it was retired to avoid a duplicate `.tex` diverging from the canonical repo.
-- **Updating the homepage bio**: edit `_pages/about.md` (prose) or `_config.yml` (the short description / contact lines under the name).
+- **Updating the homepage bio**: edit `_pages/about.md` (prose). If the role, affiliation or research focus changes, also update `description` and the `person:` block in `_config.yml`, which feed the meta description, the JSON-LD and `/llms.txt`.
+- **Page descriptions**: every page in `_pages/` should carry its own `description:` front matter. It becomes that page's meta description and JSON-LD description, and `page` layouts also show it as the subtitle.
 - **Keeping the research profile in sync**: this site is the upstream source for Alessio's research profile at `~/.claude/research/` (agenda derives from `_pages/about.md`, collaborators from `_data/coauthors.yml`, and `publications.md` is reconciled against `_bibliography/papers.bib`). After editing the bio, adding a coauthor, or adding a paper here, run `/research-sync` and review `~/.claude/research/agenda.md` so the two do not drift.
 
 ## Style

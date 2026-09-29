@@ -1,0 +1,12 @@
+{%- comment -%}
+  Paper list for /llms.txt and /llms-full.txt. Params: status ("published" or
+  "working-paper") and full (true adds each abstract under its entry).
+{%- endcomment -%}
+{%- for p in site.data.papers -%}{%- if p.status == include.status %}
+{%- assign end_char = p.title | slice: -1 -%}{%- if end_char == "?" or end_char == "." -%}{%- assign sep = "" -%}{%- else -%}{%- assign sep = "." -%}{%- endif %}
+- {% if p.url %}[{{ p.title }}]({{ p.url }}){% else %}{{ p.title }}{% endif %}{{ sep }} {{ p.authors | join: ", " }}. {{ p.venue }}, {{ p.year }}.{% if p.code %} Code: {{ p.code }}{% endif %}
+{%- if include.full and p.abstract %}
+
+  {{ p.abstract }}
+{% endif -%}
+{%- endif -%}{%- endfor -%}

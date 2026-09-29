@@ -1,0 +1,13 @@
+---
+layout: none
+permalink: /llms.txt
+sitemap: false
+---
+{%- comment -%}
+  Plain-text summary of the site for AI agents (llmstxt.org convention). The
+  body lives in _includes/llms_body.txt, shared with /llms-full.txt, which adds
+  every abstract. Publications come from _bibliography/papers.bib through
+  _plugins/bib_data.rb and talks from _data/talks.yml, so neither file needs
+  edits when those change.
+{%- endcomment -%}
+{% include llms_body.txt full=false %}

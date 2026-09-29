@@ -6,10 +6,8 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Alessio
 last_name: Brini
 email: 
-description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Executive in Residence at Duke University · Financial Machine Learning · DeFi  
-  ✉ alessio [dot] brini [at] duke [dot] edu  
-  ✉ brini [dot] alessio [at] gmail [dot] com
+description: > # default meta description for search engines and AI agents; pages override it with their own `description`
+  Alessio Brini is an Executive in Residence at Duke University's Pratt School of Engineering who works on machine learning for finance and economics, with a focus on decentralized finance and digital assets.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
@@ -27,6 +25,25 @@ impressum_path:  # set to path to include impressum link in the footer, use the 
 author:
   name: "Alessio Brini"
   avatar: "/assets/img/profile.jpg"
+
+# Structured identity for search engines and AI agents. Feeds the Schema.org
+# Person block in _includes/metadata.html and the /llms.txt summary.
+person:
+  job_title: "Executive in Residence"
+  works_for: "Duke University"
+  works_for_url: "https://duke.edu"
+  department: "Pratt School of Engineering"
+  alumni_of: "Scuola Normale Superiore"
+  alumni_of_url: "https://www.sns.it/en"
+  contact: "alessio [dot] brini [at] duke [dot] edu"
+  knows_about:
+    - "Machine learning in finance"
+    - "Reinforcement learning for sequential decision-making"
+    - "Volatility forecasting"
+    - "Decentralized finance"
+    - "Digital assets and cryptocurrency markets"
+    - "Stablecoins"
+    - "Financial econometrics"
 
 # -----------------------------------------------------------------------------
 # Theme
@@ -100,7 +117,7 @@ bing_site_verification:  # enter your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: Alessio Brini # blog_name will be displayed in your blog page
-blog_nav_title: "" # your blog must have a title for it to be displayed in the nav bar
+blog_nav_title: # leave empty, not "", so no blog link renders in the nav bar (the site has no blog)
 blog_description: Research notes on machine learning, finance, and decentralized finance
 permalink: /blog/:year/:title/
 
@@ -175,7 +192,6 @@ exclude:
   - vendor
   - CLAUDE.md
   - cv-source
-  - _posts/2021-07-04-diagrams.md
 keep_files:
   - CNAME
   - .nojekyll

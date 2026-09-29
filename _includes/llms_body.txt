@@ -1,0 +1,42 @@
+{%- assign root = site.url | append: site.baseurl -%}
+# {{ site.author.name }}
+
+> {{ site.description | strip }}
+
+At Duke I work with the Digital Asset Research & Engineering Collaborative (DAREC) and teach in the Master of Engineering in Financial Technology program. I hold a Ph.D. in Mathematical Finance from {{ site.person.alumni_of }}.
+
+Contact: {{ site.person.contact }}
+
+## Research topics
+{% for topic in site.person.knows_about %}
+- {{ topic }}{% endfor %}
+
+## Pages
+
+- [About]({{ root }}/): research focus, teaching, and education
+- [Publications]({{ root }}/publications/): published articles and working papers, with links to each paper and its code
+- [Teaching]({{ root }}/teaching/): graduate courses at Duke on machine learning for FinTech, data wrangling and visualization with Python, and statistics and econometrics
+- [Talks]({{ root }}/talks/): recorded conference talks and invited seminars
+- [CV]({{ root }}/assets/pdf/cv_brini.pdf): full curriculum vitae (PDF)
+{%- if include.full %}
+- [Short index]({{ root }}/llms.txt): this file without the abstracts
+{%- else %}
+- [Publications with abstracts]({{ root }}/llms-full.txt): this file with the abstract of every paper
+{%- endif %}
+
+## Published papers
+{% include llms_papers.txt status="published" full=include.full %}
+
+## Working papers
+{% include llms_papers.txt status="working-paper" full=include.full %}
+
+## Talks
+{% assign talks = site.data.talks | sort: "date" | reverse %}{% for t in talks %}
+- [{{ t.title }}](https://www.youtube.com/watch?v={{ t.youtube }}). {{ t.kind }}, {{ t.event }}, {{ t.date | date: "%B %Y" }}.{% endfor %}
+
+## Profiles
+
+- [ORCID](https://orcid.org/{{ site.orcid_id }})
+- [Google Scholar](https://scholar.google.com/citations?user={{ site.scholar_userid }})
+- [GitHub](https://github.com/{{ site.github_username }})
+- [LinkedIn](https://www.linkedin.com/in/{{ site.linkedin_username }})
