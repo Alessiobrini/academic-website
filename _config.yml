@@ -224,7 +224,7 @@ defaults:
 # -----------------------------------------------------------------------------
 
 jekyll-minifier:
-  exclude: ['robots.txt']
+  exclude: ['robots.txt', 'llms.txt', 'llms-full.txt']
   uglifier_args:
     harmony: true
 
