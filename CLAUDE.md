@@ -25,7 +25,7 @@ The `bin/deploy` script is a legacy manual-deploy path — **do not run it**. De
 ## Repository layout
 
 - `_config.yml` — site-wide settings (title, social links, theme, plugin config). `description` is the default meta description that search engines and AI agents read (it is not displayed on any page), and the `person:` block holds the structured identity (job title, affiliation, alma mater, research topics, obfuscated contact) that feeds the Schema.org data and `/llms.txt`.
-- `_pages/` — top-level pages: `about.md` (homepage), `publications.md`, `teaching.md`. Each declares `permalink:` and nav order in front matter. `cv.md` is a stub that redirects `/cv/` to the served PDF (see CV section below). Only these three (plus the CV redirect) are live: al-folio's `projects.md`, `repositories.md`, `dropdown.md`, and the `_projects/` demo collection were deleted so no orphan URLs build. Do not re-add them.
+- `_pages/` — top-level pages: `about.md` (homepage), `publications.md`, `teaching.md`, `talks.md` (entries in `_data/talks.yml`). Each declares `permalink:` and nav order in front matter. `cv.md` is a stub that redirects `/cv/` to the served PDF (see CV section below). Only these four (plus the CV redirect) are live: al-folio's `projects.md`, `repositories.md`, `dropdown.md`, and the `_projects/` demo collection were deleted so no orphan URLs build. Do not re-add them.
 - `_bibliography/papers.bib` — **source of truth for publications.** Entries are filtered on `_pages/publications.md` by the `keywords` field (`published` vs. `working-paper`). Sorted by `year` descending.
 - `_data/` — structured YAML: `coauthors.yml`, `venues.yml`, `repositories.yml`.
 - There is no blog and no news feed. al-folio's demo `_posts/`, `_news/`, `blog/index.html` and `news.html` were deleted because crawlers indexed the 2015 sample posts as Alessio's content. `blog_nav_title` must stay empty rather than `""`, since an empty string is truthy in Liquid and renders an invisible nav link to `/blog/`.
@@ -49,6 +49,16 @@ The `bin/deploy` script is a legacy manual-deploy path — **do not run it**. De
 - American English throughout (already enforced by global instructions).
 - Keep BibTeX entries deduplicated — same paper should not appear under both `published` and `working-paper`.
 - Don't commit `_site/`, `Gemfile.lock`, or `vendor/` (already gitignored).
+
+## Search Console
+
+The site is verified in Google Search Console (via `google237cce16d70f0f01.html`) and in Bing Webmaster Tools (imported from Search Console), with `sitemap.xml` submitted in both, all set up on 2026-09-29. Claude can read Search Console directly through a read-only service account, so checking it never needs Alessio to log in. Run `/opt/homebrew/opt/ruby/bin/ruby ~/.claude/tools/gsc/gsc.rb` with one of these subcommands, or with none to get all three:
+
+- `sitemaps`: whether Google has downloaded the sitemap and how many URLs it found.
+- `inspect [URL...]`: index status, last crawl time and Google's canonical URL for each page. With no URL it checks every page in the live sitemap. When a page is missing from Google, this gives the reason (unknown to Google, crawled but not indexed, redirected, blocked).
+- `queries [DAYS]`: the top search queries and pages over the last DAYS (default 28), with clicks, impressions and average position. This shows which papers and topics people search for, which GoatCounter cannot tell.
+
+Use it in three situations. A few days after pushing a content change, run `inspect` on the changed pages and confirm the last crawl postdates the push. When Alessio asks why a page or paper does not show up in Google, start from `inspect`. When Alessio asks how the site or the research is being found, run `queries`. Search analytics lag about two days, and the URL Inspection API allows 2,000 calls per day. Access setup, and how to replace the key, are in `~/.claude/tools/gsc/README.md`.
 
 ## Verifying changes
 
